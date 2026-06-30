@@ -41,9 +41,6 @@ Only two values are required (cmssy cloud handles the rest):
 | `CMSSY_WORKSPACE_SLUG` | cmssy dashboard -> Settings -> Headless                                                  |
 | `CMSSY_DRAFT_SECRET`   | cmssy dashboard -> Settings -> Headless (generated per workspace - copy the exact value) |
 
-`CMSSY_API_URL` and `CMSSY_EDITOR_ORIGIN` default to cmssy cloud and only need to be set
-for local-backend or self-hosted development. See `.env.example`.
-
 ## Project structure
 
 ```
