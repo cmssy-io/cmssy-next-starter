@@ -90,6 +90,7 @@ editor to start editing visually.
 
 ## Learn more
 
+- Built on the cmssy SDK: [`@cmssy/next` + `@cmssy/react`](https://github.com/cmssy-io/cmssy-sdk)
 - [cmssy docs](https://www.cmssy.com/docs)
 - [Installation](https://www.cmssy.com/docs/installation) · [Quickstart](https://www.cmssy.com/docs/quickstart)
 - [Block recipes](https://www.cmssy.com/docs/blocks) · [Theming](https://www.cmssy.com/docs/theming)
