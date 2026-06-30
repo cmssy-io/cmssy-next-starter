@@ -1,10 +1,10 @@
 # cmssy starter
 
 A minimal, runnable [Next.js](https://nextjs.org) (App Router) site powered by the
-headless [cmssy](https://www.cmssy.io) CMS. Clone it, point it at a workspace, and you
+headless [cmssy](https://www.cmssy.com) CMS. Clone it, point it at a workspace, and you
 have an editable, SEO-ready site with three example blocks.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cmssy-io/cmssy-next-starter&env=CMSSY_WORKSPACE_SLUG,CMSSY_DRAFT_SECRET&envDescription=Your%20cmssy%20workspace%20slug%20and%20draft%20secret%20from%20Settings%20-%20Headless&envLink=https://www.cmssy.io/docs/installation&project-name=cmssy-next-starter&repository-name=cmssy-next-starter)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cmssy-io/cmssy-next-starter&env=CMSSY_WORKSPACE_SLUG,CMSSY_DRAFT_SECRET&envDescription=Your%20cmssy%20workspace%20slug%20and%20draft%20secret%20from%20Settings%20-%20Headless&envLink=https://www.cmssy.com/docs/installation&project-name=cmssy-next-starter&repository-name=cmssy-next-starter)
 
 > **Try it instantly.** To render the published demo content before creating your own
 > workspace, set `CMSSY_WORKSPACE_SLUG=cmssy-demo`. `CMSSY_DRAFT_SECRET` is required by the
@@ -17,7 +17,7 @@ have an editable, SEO-ready site with three example blocks.
 - **Zero-config SDK wiring** - one catch-all route renders every cmssy page; you only set
   a workspace slug and a draft secret.
 - **Live visual editing** - the cmssy editor frames your running site and edits in place.
-- **Three example blocks** that back the [block recipes](https://www.cmssy.io/docs/blocks):
+- **Three example blocks** that back the [block recipes](https://www.cmssy.com/docs/blocks):
   - `hero` - a content block with scalar fields and optional image/video, no loader.
   - `prose` - rich text, sanitized on the server with `sanitize-html` (XSS-safe).
   - `blog-index` - lists published child pages via the delivery API (`publicPagesByType`).
@@ -83,7 +83,7 @@ styles/globals.css       your own design tokens (cmssy does not control styling)
 3. Register it in `cmssy/blocks.ts`.
 
 It then appears in the editor's block picker automatically. Full guide:
-[Building blocks](https://www.cmssy.io/docs/block-development).
+[Building blocks](https://www.cmssy.com/docs/block-development).
 
 ## Deploy
 
@@ -93,6 +93,6 @@ editor to start editing visually.
 
 ## Learn more
 
-- [cmssy docs](https://www.cmssy.io/docs)
-- [Installation](https://www.cmssy.io/docs/installation) · [Quickstart](https://www.cmssy.io/docs/quickstart)
-- [Block recipes](https://www.cmssy.io/docs/blocks) · [Theming](https://www.cmssy.io/docs/theming)
+- [cmssy docs](https://www.cmssy.com/docs)
+- [Installation](https://www.cmssy.com/docs/installation) · [Quickstart](https://www.cmssy.com/docs/quickstart)
+- [Block recipes](https://www.cmssy.com/docs/blocks) · [Theming](https://www.cmssy.com/docs/theming)
