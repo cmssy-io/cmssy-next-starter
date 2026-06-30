@@ -48,16 +48,16 @@ app/
   [[...path]]/page.tsx   catch-all: createCmssyPage + buildCmssyMetadata
   api/draft/route.ts     draft/preview mode entry (createDraftRoute)
   layout.tsx
-blocks/
-  hero/                  block.ts (defineBlock) + Hero.tsx
-  prose/                 block.ts + Prose.tsx (sanitize-html in the loader)
-  blog-index/            block.ts + BlogIndex.tsx + posts-query.ts + load-posts.ts
+blocks/                  each block is self-styled with a co-located CSS Module
+  hero/                  block.ts + Hero.tsx + Hero.module.css
+  prose/                 block.ts + Prose.tsx + Prose.module.css (sanitize-html in the loader)
+  blog-index/            block.ts + BlogIndex.tsx + BlogIndex.module.css + posts-query.ts + load-posts.ts
 cmssy/
   blocks.ts              the block registry (single source of truth)
   editor.tsx             lazy-loads blocks for the visual editor
 cmssy.config.ts          workspaceSlug + draftSecret
 proxy.ts                 edit-mode detection + CSP (frame-ancestors)
-styles/globals.css       your own design tokens (cmssy does not control styling)
+styles/globals.css       plain base styles - cmssy does not control styling (no Tailwind)
 ```
 
 ## How it works
