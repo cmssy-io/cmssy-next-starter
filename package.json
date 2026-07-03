@@ -13,8 +13,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@cmssy/next": "^0.5.6",
-    "@cmssy/react": "^0.5.6",
+    "@cmssy/next": "^0.7.6",
+    "@cmssy/react": "^0.7.6",
     "next": "^16.0.10",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
