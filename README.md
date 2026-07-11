@@ -4,7 +4,7 @@ A minimal, runnable [Next.js](https://nextjs.org) (App Router) site powered by t
 headless [cmssy](https://www.cmssy.com) CMS. Clone it, point it at a workspace, and you
 have an editable, SEO-ready site with three example blocks.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cmssy-io/cmssy-next-starter&env=CMSSY_WORKSPACE_SLUG,CMSSY_DRAFT_SECRET&envDescription=Your%20cmssy%20workspace%20slug%20and%20draft%20secret%20from%20Settings%20-%20Headless&envLink=https://www.cmssy.com/docs/installation&project-name=cmssy-next-starter&repository-name=cmssy-next-starter)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cmssy-io/cmssy-next-starter&env=CMSSY_ORG_SLUG,CMSSY_WORKSPACE_SLUG,CMSSY_DRAFT_SECRET&envDescription=Your%20cmssy%20org%20slug,%20workspace%20slug%20and%20draft%20secret%20from%20Settings%20-%20Headless&envLink=https://www.cmssy.com/docs/installation&project-name=cmssy-next-starter&repository-name=cmssy-next-starter)
 
 > **Try it instantly.** To render the published demo content before creating your own
 > workspace, set `CMSSY_WORKSPACE_SLUG=cmssy-demo`. `CMSSY_DRAFT_SECRET` is required by the
@@ -20,7 +20,7 @@ have an editable, SEO-ready site with three example blocks.
 - **Three example blocks** that back the [block recipes](https://www.cmssy.com/docs/blocks):
   - `hero` - a content block with scalar fields and optional image/video, no loader.
   - `prose` - rich text, sanitized on the server with `sanitize-html` (XSS-safe).
-  - `blog-index` - lists published child pages via the delivery API (`publicPagesByType`).
+  - `blog-index` - lists published child pages via the delivery API (`public.page.byType`).
 
 ## Quickstart
 
@@ -38,6 +38,7 @@ Only two values are required (cmssy cloud handles the rest):
 
 | Variable               | Where to find it                                                                         |
 | ---------------------- | ---------------------------------------------------------------------------------------- |
+| `CMSSY_ORG_SLUG`       | cmssy dashboard -> Settings -> Headless                                                  |
 | `CMSSY_WORKSPACE_SLUG` | cmssy dashboard -> Settings -> Headless                                                  |
 | `CMSSY_DRAFT_SECRET`   | cmssy dashboard -> Settings -> Headless (generated per workspace - copy the exact value) |
 
