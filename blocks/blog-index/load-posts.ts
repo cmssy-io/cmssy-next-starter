@@ -30,8 +30,10 @@ export async function loadPosts(vars: {
     throw new Error("loadPosts is server-only");
   }
   const data = await client.queryScoped<{
-    publicPagesByType?: { items?: Post[]; hasMore?: boolean } | null;
+    public?: {
+      page?: { byType?: { items?: Post[]; hasMore?: boolean } | null } | null;
+    } | null;
   }>(PUBLIC_PAGES_BY_TYPE, { ...vars, offset: 0 });
-  const r = data?.publicPagesByType;
+  const r = data?.public?.page?.byType;
   return r ? { items: r.items ?? [], hasMore: !!r.hasMore } : null;
 }

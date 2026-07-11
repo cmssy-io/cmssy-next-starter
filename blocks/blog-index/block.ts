@@ -9,11 +9,11 @@ export const blogIndexBlock = defineBlock({
   label: "Blog index",
   component: BlogIndex,
   props: {
-    parentSlug: fields.singleLine({
+    parentSlug: fields.text({
       label: "Parent slug",
       placeholder: "/blog",
     }),
-    postsPerPage: fields.numeric({ label: "Posts per page", defaultValue: 9 }),
+    postsPerPage: fields.number({ label: "Posts per page", defaultValue: 9 }),
   },
   loader: async ({ content }) => {
     const parentSlug =

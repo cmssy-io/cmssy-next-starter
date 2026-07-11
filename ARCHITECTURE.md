@@ -8,7 +8,7 @@ A complete, buildable Next.js (App Router) app wired to the headless cmssy CMS. 
 These cmssy-specific files are the canonical scaffold "overlay" - the set `cmssy init` applies onto a
 fresh `create-next-app@latest` (everything else is stock Next):
 
-- `cmssy.config.ts` - zero-config (`workspaceSlug` + `draftSecret`; locales read from the platform)
+- `cmssy.config.ts` - `defineCmssyConfig` with the three required values (`org`, `workspaceSlug`, `draftSecret`); it validates at startup and throws naming any missing env var. Locales are read from the platform, not configured here.
 - `app/[[...path]]/page.tsx` - catch-all (`createCmssyPage` + `buildCmssyMetadata`)
 - `app/api/draft/route.ts` - draft/preview (`createDraftRoute`)
 - `proxy.ts` - edit-mode detection + CSP
