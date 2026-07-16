@@ -5,19 +5,44 @@ A complete, buildable Next.js (App Router) app wired to the headless cmssy CMS. 
 
 ## The cmssy overlay
 
-These cmssy-specific files are the canonical scaffold "overlay" - the set `cmssy init` applies onto a
-fresh `create-next-app@latest` (everything else is stock Next):
+These cmssy-specific files are the canonical wiring "overlay" - what you add to a fresh
+`create-next-app@latest` and then connect with `npx @cmssy/cli link` (everything else is stock
+Next):
 
-- `cmssy.config.ts` - `defineCmssyConfig` with the three required values (`org`, `workspaceSlug`, `draftSecret`); it validates at startup and throws naming any missing env var. Locales are read from the platform, not configured here.
-- `app/[[...path]]/page.tsx` - catch-all (`createCmssyPage` + `buildCmssyMetadata`)
-- `app/api/draft/route.ts` - draft/preview (`createDraftRoute`)
-- `proxy.ts` - edit-mode detection + CSP
+- `cmssy.config.ts` - `defineCmssyConfig` with the three required values (`org`, `workspaceSlug`,
+  `draftSecret`); it validates at startup and throws naming any missing env var. Locales come from
+  the workspace (Settings → Languages), never from this config.
+- `proxy.ts` - `createCmssyProxy` from `@cmssy/next/middleware`. In order: resolves the locale,
+  rewrites a **verified** editor request onto `/cmssy-edit`, applies the CSP `frame-ancestors` for
+  the cmssy admin. The order matters, which is why it is a preset and not hand-rolled here.
+- `app/[[...path]]/page.tsx` - public catch-all (`createCmssyPage` + `buildCmssyMetadata`)
+- `app/cmssy-edit/[[...path]]/page.tsx` - the dynamic route verified editor traffic lands on
+  (`createCmssyEditPage`, `force-dynamic`); a static public page never sees the query string, so
+  the editor needs a route of its own. Delete it and the editor preview goes blank.
+- `app/api/draft/route.ts` - draft preview (`createDraftRoute`); enter with
+  `?secret=<CMSSY_DRAFT_SECRET>`, exit with `?disable=1`
+- `app/sitemap.ts` + `app/robots.ts` - SEO from the workspace's published pages
+  (`createCmssySitemap`, `createCmssyRobots`)
 - `cmssy/blocks.ts` - block registry
-- `cmssy/editor.tsx` - lazy editor
-- `blocks/**` - example blocks (`hero`, `prose`, `blog-index`), each self-styled with a co-located
-  CSS Module (no Tailwind - cmssy does not impose a styling system)
+- `cmssy/editor.tsx` - lazy editor (blocks load on the client, server-only loader code stays out
+  of the browser bundle)
+- `cmssy/editable-layout.tsx` - mounts header/footer layout blocks through the edit bridge; used
+  by `CmssyLayoutSlot` in `app/layout.tsx`
+- `blocks/**` - example blocks (`hero`, `prose`, `blog-index`); each exports its field schema next
+  to the component (`BlockProps<typeof props>`, `BlockProps<typeof props, Data>` for loader
+  blocks) and is self-styled with a co-located CSS Module (no Tailwind - cmssy does not impose a
+  styling system)
 - deltas: `next.config.mjs` image `remotePatterns`; `styles/globals.css` plain base tokens;
   deps `@cmssy/next`, `@cmssy/react`, `sanitize-html`
 
-Stock Next files (`app/layout.tsx`, `package.json` base, `tsconfig.json`, `eslint.config.mjs`) come
-from `create-next-app`; the catch-all owns `/`, so drop the default `app/page.tsx`.
+Stock Next files (`package.json` base, `tsconfig.json`, `eslint.config.mjs`) come from
+`create-next-app`; the catch-all owns `/`, so drop the default `app/page.tsx`.
+
+## Edit-mode security model
+
+`?cmssyEdit=1` alone does nothing. An editor request must also carry a `cmssySecret` that the
+middleware verifies server-side against the workspace draft secret before rewriting it onto
+`/cmssy-edit`; an unverified request renders published content like any other. The secret is
+server-only (`CMSSY_DRAFT_SECRET`) and never reaches the browser - the editor proves itself per
+request. `frame-ancestors` is restricted to the cmssy admin origin (`https://www.cmssy.io`), so no
+other site can frame the app in edit mode.
