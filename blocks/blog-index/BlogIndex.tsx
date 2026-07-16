@@ -1,10 +1,13 @@
 import { CmssyLink } from "@cmssy/next/client";
-import type { CmssyBlockContext } from "@cmssy/react";
-import type { Localized, Post } from "./load-posts";
+import { fields, type BlockProps, type CmssyBlockContext } from "@cmssy/react";
+import type { Localized, Post, PostsResult } from "./load-posts";
 import styles from "./BlogIndex.module.css";
 
-// Translatable page fields come back language-keyed; resolve to the active
-// locale (falling back to the default, then any available value).
+export const blogIndexProps = {
+  parentSlug: fields.text({ label: "Parent slug", placeholder: "/blog" }),
+  postsPerPage: fields.number({ label: "Posts per page", defaultValue: 9 }),
+};
+
 function pickLocale(
   value: Localized,
   locale?: CmssyBlockContext["locale"],
@@ -18,14 +21,10 @@ function pickLocale(
   return Object.values(value)[0] ?? "";
 }
 
-// `data` comes from the loader; absent in the editor (loader does not run there).
 export default function BlogIndex({
   data,
   context,
-}: {
-  data?: { items?: Post[]; hasMore?: boolean } | null;
-  context?: CmssyBlockContext;
-}) {
+}: BlockProps<typeof blogIndexProps, PostsResult | null>) {
   const items = data?.items ?? [];
   const locale = context?.locale;
 
@@ -35,7 +34,7 @@ export default function BlogIndex({
 
   return (
     <div className={styles.grid}>
-      {items.map((post) => {
+      {items.map((post: Post) => {
         const title =
           pickLocale(post.displayName, locale) ||
           pickLocale(post.seoTitle, locale) ||

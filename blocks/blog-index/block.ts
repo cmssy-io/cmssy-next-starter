@@ -1,25 +1,15 @@
-import { defineBlock, fields } from "@cmssy/react";
-import BlogIndex from "./BlogIndex";
+import { defineBlock } from "@cmssy/react";
+import BlogIndex, { blogIndexProps } from "./BlogIndex";
 
-// Lists published child pages under `parentSlug`. There is no SDK helper for
-// this - the loader runs the delivery-API query (see load-posts.ts). The loader
-// does not run in the editor, so the component guards on missing `data`.
 export const blogIndexBlock = defineBlock({
   type: "blog-index",
   label: "Blog index",
   component: BlogIndex,
-  props: {
-    parentSlug: fields.text({
-      label: "Parent slug",
-      placeholder: "/blog",
-    }),
-    postsPerPage: fields.number({ label: "Posts per page", defaultValue: 9 }),
-  },
+  props: blogIndexProps,
   loader: async ({ content }) => {
-    const parentSlug =
-      typeof content.parentSlug === "string" ? content.parentSlug : "";
+    const parentSlug = content.parentSlug ?? "";
     if (!parentSlug) return null;
     const { loadPosts } = await import("./load-posts");
-    return loadPosts({ parentSlug, limit: Number(content.postsPerPage) || 9 });
+    return loadPosts({ parentSlug, limit: content.postsPerPage ?? 9 });
   },
 });

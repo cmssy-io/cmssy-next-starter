@@ -1,22 +1,23 @@
 import Image from "next/image";
 import { CmssyLink } from "@cmssy/next/client";
+import { fields, type BlockProps } from "@cmssy/react";
 import styles from "./Hero.module.css";
 
-type HeroContent = {
-  badgeText?: string;
-  heading?: string;
-  headingHighlight?: string;
-  subheading?: string;
-  primaryButtonText?: string;
-  primaryButtonUrl?: string;
-  secondaryButtonText?: string;
-  secondaryButtonUrl?: string;
-  media?: string;
+export const heroProps = {
+  badgeText: fields.text({ label: "Badge" }),
+  heading: fields.text({ label: "Heading", required: true }),
+  headingHighlight: fields.text({ label: "Heading highlight" }),
+  subheading: fields.textarea({ label: "Subheading" }),
+  primaryButtonText: fields.text({ label: "Primary button text" }),
+  primaryButtonUrl: fields.link({ label: "Primary button URL" }),
+  secondaryButtonText: fields.text({ label: "Secondary button text" }),
+  secondaryButtonUrl: fields.link({ label: "Secondary button URL" }),
+  media: fields.media({ label: "Media (image or video)" }),
 };
 
 const isVideo = (src: string) => /\.(mp4|webm|ogg)$/i.test(src);
 
-export default function Hero({ content }: { content: HeroContent }) {
+export default function Hero({ content }: BlockProps<typeof heroProps>) {
   const {
     badgeText,
     heading,
