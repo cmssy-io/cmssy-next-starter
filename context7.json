@@ -4,7 +4,11 @@
   "public_key": "pk_dn8mCBCoFKGcWyPFzluwi",
   "projectTitle": "cmssy Next.js Starter",
   "description": "Minimal runnable reference of a headless cmssy site on Next.js (App Router) with the cmssy SDK - the shape `npx @cmssy/cli init` generates.",
-  "excludeFolders": ["node_modules", ".next"],
+  "excludeFolders": [
+    "node_modules",
+    ".next",
+    "_autodocs"
+  ],
   "rules": [
     "Edit mode requires a VERIFIED request: cmssyEdit=1 AND a cmssySecret matching the workspace draft secret. Use the createCmssyProxy preset from @cmssy/next/middleware - never treat a bare cmssyEdit=1 as edit mode.",
     "The editor origin is https://www.cmssy.io (cmssy cloud). app.cmssy.com does not exist.",
