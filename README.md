@@ -41,6 +41,16 @@ secret with a `cs_...` API token (dashboard → **API Tokens**), writes them to
 the editor deep link. Prefer it to hand-copying values; if you do copy by hand, use
 `.env.example` as the template.
 
+### Wiring your own app instead
+
+This repo is a reference, not a required starting point. To add cmssy to an app you
+already have (or a fresh `npx create-next-app`), generate exactly this wiring with:
+
+```bash
+npx @cmssy/cli init   # detects your framework, writes the cmssy wiring (idempotent)
+npx @cmssy/cli link   # connects it to your workspace
+```
+
 ### Environment
 
 Only three values are required (cmssy cloud handles the rest):
