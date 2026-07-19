@@ -2,7 +2,7 @@
 
 A minimal, runnable [Next.js](https://nextjs.org) (App Router) site powered by the
 headless [cmssy](https://www.cmssy.com) CMS. Clone it, point it at a workspace, and you
-have an editable, SEO-ready site with three example blocks.
+have an editable, SEO-ready site with four example blocks.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cmssy-io/cmssy-next-starter&env=CMSSY_ORG_SLUG,CMSSY_WORKSPACE_SLUG,CMSSY_DRAFT_SECRET&envDescription=Your%20cmssy%20org%20slug,%20workspace%20slug%20and%20draft%20secret%20from%20Settings%20-%20Headless&envLink=https://www.cmssy.com/docs/installation&project-name=cmssy-next-starter&repository-name=cmssy-next-starter)
 
@@ -78,6 +78,7 @@ blocks/                       each block is self-styled with a co-located CSS Mo
   hero/                       Hero.tsx (schema + component) + block.ts + Hero.module.css
   prose/                      sanitize-html runs in the server loader
   blog-index/                 delivery-API query in a server-only loader helper
+  testimonials/               model records bound with fields.relation, no loader
 cmssy/
   blocks.ts                   the block registry (single source of truth)
   editor.tsx                  lazy-loads blocks for the visual editor
