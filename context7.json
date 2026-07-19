@@ -14,6 +14,7 @@
     "The editor origin is https://www.cmssy.io (cmssy cloud). app.cmssy.com does not exist.",
     "Each block exports its field schema as `props` and the component is typed BlockProps<typeof props> - never hand-write block content types.",
     "Locales come from the workspace (Settings -> Languages); CmssyConfig has no defaultLocale/enabledLocales.",
-    "To wire cmssy into an existing app, run: npx @cmssy/cli init && npx @cmssy/cli link."
+    "To wire cmssy into an existing app, run: npx @cmssy/cli init && npx @cmssy/cli link.",
+    "Structured, reusable content (testimonials, FAQ items, team members) lives in workspace models and reaches a block via fields.relation - never as a fields.repeater of record-shaped items in block props. Repeaters are for view-local structure only."
   ]
 }

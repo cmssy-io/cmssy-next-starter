@@ -20,10 +20,14 @@ have an editable, SEO-ready site with three example blocks.
   Only a request that proves itself with the workspace draft secret ever enters edit mode.
 - **Schema-typed blocks** - each block exports its field schema and the component is typed
   `BlockProps<typeof props>`, so a renamed field is a compile error, not an empty block.
-- **Three example blocks** that back the [block recipes](https://www.cmssy.com/docs/blocks):
+- **Four example blocks** that back the [block recipes](https://www.cmssy.com/docs/blocks):
   - `hero` - a content block with scalar fields and optional image/video, no loader.
   - `prose` - rich text, sanitized on the server with `sanitize-html` (XSS-safe).
   - `blog-index` - lists published child pages via the delivery API (`public.page.byType`).
+  - `testimonials` - the "models for data, blocks for view" reference: records of a
+    `testimonial` model (fields `quote`, `author`, `role`, `order`) bound with
+    `fields.relation({ mode: "all", sort: "order_asc" })` and resolved server-side -
+    no loader, no ids in the component, no record data trapped in block props.
 
 ## Quickstart
 
