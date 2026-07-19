@@ -2,7 +2,7 @@
 
 A minimal, runnable [Next.js](https://nextjs.org) (App Router) site powered by the
 headless [cmssy](https://www.cmssy.com) CMS. Clone it, point it at a workspace, and you
-have an editable, SEO-ready site with three example blocks.
+have an editable, SEO-ready site with four example blocks.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cmssy-io/cmssy-next-starter&env=CMSSY_ORG_SLUG,CMSSY_WORKSPACE_SLUG,CMSSY_DRAFT_SECRET&envDescription=Your%20cmssy%20org%20slug,%20workspace%20slug%20and%20draft%20secret%20from%20Settings%20-%20Headless&envLink=https://www.cmssy.com/docs/installation&project-name=cmssy-next-starter&repository-name=cmssy-next-starter)
 
@@ -20,10 +20,14 @@ have an editable, SEO-ready site with three example blocks.
   Only a request that proves itself with the workspace draft secret ever enters edit mode.
 - **Schema-typed blocks** - each block exports its field schema and the component is typed
   `BlockProps<typeof props>`, so a renamed field is a compile error, not an empty block.
-- **Three example blocks** that back the [block recipes](https://www.cmssy.com/docs/blocks):
+- **Four example blocks** that back the [block recipes](https://www.cmssy.com/docs/blocks):
   - `hero` - a content block with scalar fields and optional image/video, no loader.
   - `prose` - rich text, sanitized on the server with `sanitize-html` (XSS-safe).
   - `blog-index` - lists published child pages via the delivery API (`public.page.byType`).
+  - `testimonials` - the "models for data, blocks for view" reference: records of a
+    `testimonial` model (fields `quote`, `author`, `role`, `order`) bound with
+    `fields.relation({ mode: "all", sort: "order_asc" })` and resolved server-side -
+    no loader, no ids in the component, no record data trapped in block props.
 
 ## Quickstart
 
@@ -74,6 +78,7 @@ blocks/                       each block is self-styled with a co-located CSS Mo
   hero/                       Hero.tsx (schema + component) + block.ts + Hero.module.css
   prose/                      sanitize-html runs in the server loader
   blog-index/                 delivery-API query in a server-only loader helper
+  testimonials/               model records bound with fields.relation, no loader
 cmssy/
   blocks.ts                   the block registry (single source of truth)
   editor.tsx                  lazy-loads blocks for the visual editor
